@@ -1,43 +1,44 @@
-'use-strict'
-var express=require('express');
-var ProductoController=require('../controllers/tienda');
+'use strict'
+var express = require('express');
+var ProductoController = require('../controllers/tienda');
 
-//define rutas esspecificas dentro de la aplicacion 
-var router=express.Router();
+//aqui definimos las rutas de la app
+var router = express.Router();
 
-//subir el archivo multipart/form-data
-var multipart=require('connect-multiparty');
-
-var multiPartMiddleware=multipart({uploadDir:'./uploads'});
+//para subir archivos tipo multipart/form-data
+var multipart = require('connect-multiparty');
+var multiPartMiddleware = multipart({ uploadDir: './uploads' });
 
 //pagina de inicio
 router.get('/home', ProductoController.home);
 
-//guardar informaacion de prodcuto}
+//guardar info del producto
 router.post('/guardar-producto', ProductoController.saveProducto);
 
-//ver indormacion de los productos
+//mostrar todos los productos
 router.get('/productos', ProductoController.getProductos);
 
-//obtener datos de un producto
-
+//obtener un producto por ID
 router.get('/producto/:id', ProductoController.getProducto);
 
-//eliminar prodcuto
-
+//eliminar producto por ID
 router.delete('/producto/:id', ProductoController.deleteProducto);
 
-//ACTUALIZAR PRODUCTO
-
+//actualizar producto
 router.put('/producto/:id', ProductoController.updateProducto);
 
-//AGREGAR IMAGENES
-router.post('/subir-imagen/:id', multiPartMiddleware,ProductoController.uploadImagen);
+//subir imagen al producto
+router.post('/subir-imagen/:id', multiPartMiddleware, ProductoController.uploadImagen);
 
-//CARGAR IMAGENES
-
+//cargar imagen del servidor
 router.get('/get-imagen/:imagen', ProductoController.getImagen);
 
+//ver lista de administradores
+router.get('/administradores', ProductoController.getAdministradores);
 
-module.exports=router;  // exportar un objeto route desde un modulo de node.js paa utilizarlo en otro archivos 
+//ver lista de clientes
+router.get('/clientes', ProductoController.getClientes);
 
+
+//exportamos las rutas para poder usarlas en app.js
+module.exports = router;
