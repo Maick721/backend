@@ -10,7 +10,7 @@ var fs = require('fs');
 var controller = {
 
     home: function (req, res) {
-        return res.status(200).send("<h1> Backend Tienda Aki 🛒 </h1>");
+        return res.status(200).send("<h1> Backend Tienda Aki     </h1>");
     },
 
     // Para productos
@@ -158,29 +158,34 @@ var controller = {
         Administrador.find().exec()
             .then(admins => {
                 if (!admins || admins.length === 0)
-                    return res.status(404).send({ message: 'No hay administradores' });
+                return res.status(404).send({
+                 message: 'No hay administradores' });
 
-                return res.status(200).send({ administradores: admins });
+            return res.status(200).send({ administradores: admins });
             })
             .catch(err => {
-                return res.status(500).send({ message: 'Error al recuperar administradores', error: err });
+            return res.status(500).send({ 
+            message: 'Error al recuperar administradores', error: err });
             });
-    },
+        },
 
     // Apartado de clientes
 
     getClientes: function (req, res) {
         Cliente.find().exec()
             .then(clientes => {
-                if (!clientes || clientes.length === 0)
-                    return res.status(404).send({ message: 'No hay clientes' });
+                if 
+                (!clientes || clientes.length === 0)
+                    return res.status(404).send({ 
+                message: 'No hay clientes' });
 
                 return res.status(200).send({ clientes });
             })
             .catch(err => {
-                return res.status(500).send({ message: 'Error al recuperar clientes', error: err });
+                return res.status(500).send({ 
+                message: 'Error al recuperar clientes', error: err });
             });
-    }
-};
+         }
+        };
 
 module.exports = controller;

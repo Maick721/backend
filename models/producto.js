@@ -12,5 +12,4 @@ const productoSchema = new mongoose.Schema({
   fecha_ingreso: String,
   oferta: Boolean
 }, { collection: 'productos' }); 
-
 module.exports = mongoose.model('Producto', productoSchema);
