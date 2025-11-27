@@ -1,15 +1,14 @@
-const mongoose = require('mongoose');
+'use strict'
 
-const productoSchema = new mongoose.Schema({
-  id: Number,
-  nombre: String,
-  descripcion: String,
-  precio: Number,
-  categoria: String,
-  stock: Number,
-  marca: String,
-  codigo_barras: String,
-  fecha_ingreso: String,
-  oferta: Boolean
-}, { collection: 'productos' }); 
-module.exports = mongoose.model('Producto', productoSchema);
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var ProductoSchema = Schema({
+    marca: String,
+    modelo: String,
+    ram: String,
+    rom: String, 
+    precio: Number,
+    imagen: String
+});
+module.exports= mongoose.model('Producto', ProductoSchema);
